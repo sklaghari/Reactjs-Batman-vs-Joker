@@ -5,6 +5,8 @@ import Board from './Board';
 import joker from '../../public/images/joker.png'
 import batman from '../../public/images/Batman.png'
 import CalculateWinner from './helperFunction'
+import useSound from 'use-sound'
+import jokerLaugh from '../../public/sounds/joker.wav'
 const Ul = styled.ul`
 list-style-type: none;
 `
@@ -43,11 +45,22 @@ const Button = styled.button`
   font-size: 12px;
 `
 const Game = () => {
+  const [play] = useSound(jokerLaugh)
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [stepNumber, setStepNumber] = useState(0)
   const [xIsNext, setXIsNext] = useState(true)
   const winner = CalculateWinner(history[stepNumber])
-  let status = winner ? 'Winner: ' +winner : "Next player: " +(xIsNext ? "Joker" : "Batman")
+  let status;
+  if (winner && winner!='Draw'){
+    status = 'Winner: ' + winner
+  }
+  else if(winner && winner==='Draw'){
+    status = 'It is ' + winner +" Batman Vs Joker"
+  }
+  else{
+    status = "Next player: " + (xIsNext ? "Joker" : "Batman")
+  }
+ // let status = winner ? 'Winner: ' + winner : "Next player: " +(xIsNext ? "Joker" : "Batman")
   const handleClick = (i) => {
     const timeInHistory = history.slice(0, stepNumber + 1);
     const current = timeInHistory[stepNumber]

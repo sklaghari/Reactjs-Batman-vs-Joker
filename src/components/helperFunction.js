@@ -1,3 +1,4 @@
+import useSound from 'use-sound';
 const CalculateWinner= (squares) => {
     const lines = [
       [0, 1, 2],
@@ -15,11 +16,13 @@ const CalculateWinner= (squares) => {
         if (squares[a] ==='/static/media/joker.6f94deac.png'){
           return 'Joker';
         }
-        else{
+        else if(squares[a] === '/static/media/Batman.efc2222d.png'){
           return 'Batman';
         }
-          
       }
+      else if(!squares.includes(null)){
+        return 'Draw';
+    }
     }
     return null;
   }
