@@ -1,12 +1,14 @@
 import React, {useState} from 'react'
-import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import Board from './Board';
 import joker from '../../public/images/joker.png'
 import batman from '../../public/images/Batman.png'
 import CalculateWinner from './helperFunction'
-import useSound from 'use-sound'
-import jokerLaugh from '../../public/sounds/joker.wav'
+import useAudio from '../newHooks/useAudio'
+import backgroundMusic from '../../public/sounds/background.mp3'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
+
 const Ul = styled.ul`
 list-style-type: none;
 `
@@ -45,7 +47,7 @@ const Button = styled.button`
   font-size: 12px;
 `
 const Game = () => {
-  const [play] = useSound(jokerLaugh)
+  const [playing ,toggle] = useAudio(backgroundMusic)
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [stepNumber, setStepNumber] = useState(0)
   const [xIsNext, setXIsNext] = useState(true)
@@ -92,6 +94,13 @@ const Game = () => {
   )
     return (
       <div className="game">
+        <div onClick={toggle}>
+            {playing ? <FontAwesomeIcon 
+              icon={faVolumeUp} size = '2x' 
+              color='#656e72'/> :
+              <FontAwesomeIcon icon={faVolumeMute} size = '2x' color='#656e72'/>
+            }
+        </div>
         <div>
           <Board
             squares={history[stepNumber]}
