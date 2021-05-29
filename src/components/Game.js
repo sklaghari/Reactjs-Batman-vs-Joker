@@ -4,9 +4,7 @@ import styled from 'styled-components'
 import Board from './Board';
 import joker from '../../public/images/joker.png'
 import batman from '../../public/images/Batman.png'
-import {calculateWinner} from './helperFunction'
-import useSound from 'use-sound';
-import jokerLaugh from '../../public/sounds/joker.wav'
+import CalculateWinner from './helperFunction'
 const Ul = styled.ul`
 list-style-type: none;
 `
@@ -48,7 +46,7 @@ const Game = () => {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [stepNumber, setStepNumber] = useState(0)
   const [xIsNext, setXIsNext] = useState(true)
-  const winner = calculateWinner(history[stepNumber])
+  const winner = CalculateWinner(history[stepNumber])
   let status = winner ? 'Winner: ' +winner : "Next player: " +(xIsNext ? "Joker" : "Batman")
   const handleClick = (i) => {
     const timeInHistory = history.slice(0, stepNumber + 1);
@@ -59,7 +57,7 @@ const Game = () => {
     }
     squares[i] = xIsNext ? joker: batman;
     setHistory([...timeInHistory, squares]);
-    setStepNumber(history.length);
+    setStepNumber(timeInHistory.length);
     setXIsNext(!xIsNext);
   }
 
@@ -89,7 +87,7 @@ const Game = () => {
         </div>
         <div>
           <Div>{status}</Div>
-          {renderMoves}
+          <Div>{renderMoves()}</Div>
         </div>
       </div>
     );
