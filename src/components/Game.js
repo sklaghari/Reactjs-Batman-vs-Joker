@@ -4,10 +4,15 @@ import Board from './Board';
 import joker from '../../public/images/joker.png'
 import batman from '../../public/images/Batman.png'
 import CalculateWinner from './helperFunction'
-import useAudio from '../newHooks/useAudio'
+import useAudio from '../newhooks/useAudio'
+import useSound from 'use-sound'
+import jokerLaugh from '../../public/sounds/joker.wav'
+import batmanVictory from '../../public/sounds/batman.wav'
 import backgroundMusic from '../../public/sounds/background.mp3'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
+import Audio from './Audio'
+
 
 const Ul = styled.ul`
 list-style-type: none;
@@ -51,6 +56,7 @@ const Game = () => {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [stepNumber, setStepNumber] = useState(0)
   const [xIsNext, setXIsNext] = useState(true)
+  const [jokerSound] = useSound(jokerLaugh)
   const winner = CalculateWinner(history[stepNumber])
   let status;
   if (winner && winner!='Draw'){
@@ -92,8 +98,21 @@ const Game = () => {
         )
       }) 
   )
+  const renderSound =()=>{
+    if(winner ==='Joker'){
+      return(
+        <Audio sound={jokerLaugh}/>
+      )
+    }
+    else if(winner === 'Batman'){
+      return(
+        <Audio sound={batmanVictory}/>
+      )
+    }
+  }
     return (
       <div className="game">
+        <div><h2>Arkham city</h2></div>
         <div onClick={toggle}>
             {playing ? <FontAwesomeIcon 
               icon={faVolumeUp} size = '2x' 
@@ -110,6 +129,7 @@ const Game = () => {
         <div>
           <Div>{status}</Div>
           <Div>{renderMoves()}</Div>
+          <div>{renderSound()}</div>
         </div>
       </div>
     );
