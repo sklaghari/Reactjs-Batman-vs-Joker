@@ -25,31 +25,42 @@ font-size: 20px;
 font-weight: bold;
 margin-top:2px;
 `
-const StartButton = styled.button`
-  background-color: #d387ab;
-  background-image: linear-gradient(315deg, #d387ab 0%, #b279a7 74%);
-  border: none;
-  font-weight: bold;
-  color: black;
-  padding: 5px;
-  margin:1px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 12px;
-`
 const Button = styled.button`
-  background-color #ff4e00;
-  background-image linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
+  width: 110px;
+  height: 50px;
+  font-size : 14px;
   border: none;
-  font-weight: bold;
-  color: black;
-  padding: 5px;
-  margin:1px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 12px;
+  outline: none;
+  color: #fff;
+  background-color #3f0d12;
+  background-image linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);  
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+`
+const H2 = styled.h2`
+background: -webkit-linear-gradient(#cb218e, #333);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+font-family: 'Raleway',sans-serif; 
+font-size: 62px; 
+font-weight: 800; 
+line-height: 72px; 
+margin: 0 0 24px; 
+text-align: center; 
+text-transform: uppercase;
+`
+const H5 = styled.h5`
+background: -webkit-linear-gradient(#cb218e, #333);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent; 
+font-family: 'Raleway',sans-serif; 
+font-size: 28px; 
+font-weight: 800; 
+margin: 0; 
+text-align: center; 
+text-transform: uppercase;
 `
 const Game = () => {
   const [playing ,toggle] = useAudio(backgroundMusic)
@@ -60,7 +71,7 @@ const Game = () => {
   const winner = CalculateWinner(history[stepNumber])
   let status;
   if (winner && winner!='Draw'){
-    status = 'Winner: ' + winner
+    status = winner + ' Wins'
   }
   else if(winner && winner==='Draw'){
     status = 'It is ' + winner +" Batman Vs Joker"
@@ -88,7 +99,7 @@ const Game = () => {
   }
   const renderMoves = () => (
     history.map((_step, move) => {
-      const destination = move ?'Go to move #' + move : 'Go to game start'
+      const destination = move ?'Go to move ' + move : 'Start Game'
         return (
           <Ul>
             <li key={move}>
@@ -112,22 +123,23 @@ const Game = () => {
   }
     return (
       <div className="game">
-        <div><h2>Arkham city</h2></div>
-        <div onClick={toggle}>
+        <H2>Arkham city</H2>
+        <Div onClick={toggle}>
             {playing ? <FontAwesomeIcon 
               icon={faVolumeUp} size = '2x' 
               color='#656e72'/> :
               <FontAwesomeIcon icon={faVolumeMute} size = '2x' color='#656e72'/>
             }
-        </div>
+        </Div>
         <div>
+          <br/>
+        <H5>{status}</H5>
           <Board
             squares={history[stepNumber]}
             onClick={i => handleClick(i)}
           />
         </div>
         <div>
-          <Div>{status}</Div>
           <Div>{renderMoves()}</Div>
           <div>{renderSound()}</div>
         </div>
