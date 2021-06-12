@@ -11,29 +11,109 @@ import batmanVictory from '../../public/sounds/batman.wav'
 import backgroundMusic from '../../public/sounds/background.mp3'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
-import { faFacebookF,faYoutube,faGithub,faTwitter } from '@fortawesome/free-brands-svg-icons' 
+import { faFacebook,faYoutube,faGithub,faTwitter } from '@fortawesome/free-brands-svg-icons' 
 import Audio from './Audio'
 
-const Container = styled.div`
-display: grid;
-grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto;
-`
 const Wrapper = styled.div`
+display: grid;
+grid-column-gap:0;
+grid-row-gap:0;
+
+`
+const TopContainer = styled.div`
+display: grid;
+grid-template-columns: repeat(12, 1fr);
+grid-column-gap:0;
+`
+const SocialMediaDiv = styled.div`
 grid-column-start:1;
 grid-column-end:3;
-line-height: 72px;
-margin: 0 0 24px; 
+margin:0;
+display: flex;
+align-items: center; 
+justify-content: center;
+@media (min-width:320px) and (max-width:480px){
+  grid-column-start:1;
+  grid-column-end:13;
+}
+`
+const H2 = styled.h2`
+grid-column-start:3;
+grid-column-end:11;
+display: flex;
+align-items: center; 
+justify-content: center;
+background: -webkit-linear-gradient(#cb218e, #333);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+font-family: 'Raleway',sans-serif; 
+font-size: 62px; 
+font-weight: 800;
+margin:0;
+text-transform: uppercase;
+margin:0;
+@media (min-width:320px) and (max-width:480px){
+  grid-column-start:1;
+  grid-column-end:13;
+  font-size: 32px; 
+  font-weight: 800;
+}
+`
+const SpeakerButtonDiv = styled.div`
+grid-column-start:11;
+grid-column-end:13;
+margin:0;
+display: flex;
+align-items: center; 
+justify-content: center;
+@media (min-width:320px) and (max-width:480px){
+  display:none;
+}
+`
+const MidContainer = styled.div`
+display: grid;
+grid-template-columns: repeat(12, 1fr);
+grid-column-gap:0;
+`
+const H5 = styled.h5`
+grid-column-start:1;
+grid-column-end:13;
+background: -webkit-linear-gradient(#cb218e, #333);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent; 
+font-family: 'Raleway',sans-serif; 
+font-size: 28px; 
+font-weight: 800;
+text-transform: uppercase;
+align-self:center;
+justify-self:center;
+@media (min-width:320px) and (max-width:480px){
+  font-size: 16px; 
+  font-weight: 800;
+}
+@media (min-width:411px) and (max-width:823px){
+  font-size: 22px; 
+  font-weight: 800;
+}
+`
+const BoardDiv = styled.div`
+display:grid;
+grid-column-gap:0;
+grid-row-gap:0;
+align-self:center;
+justify-self:center;
+`
+const BottomDiv = styled.div`
+display:grid;
+grid-template-columns: repeat(12, 1fr);
+grid-column-gap:0;
+grid-row-gap:0;
+@media (min-width:320px) and (max-width:480px){
+  grid-template-columns: repeat(3, 1fr);
+}
 `
 const Ul = styled.ul`
 list-style-type: none;
-`
-const Div = styled.div`
-display: flex;
-justify-content: center;
-color: white;
-font-size: 20px;
-font-weight: bold;
-margin-top:2px;
 `
 const Button = styled.button`
 width: 110px;
@@ -45,44 +125,41 @@ color: #fff;
 background-color #3f0d12;
 background-image linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);  
 cursor: pointer;
-position: relative;
-z-index: 0;
 border-radius: 10px;
-`
-const H2 = styled.h2`
-grid-column-start:6;
-grid-column-end:12;
-background: -webkit-linear-gradient(#cb218e, #333);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-font-family: 'Raleway',sans-serif; 
-font-size: 62px; 
-font-weight: 800; 
-line-height: 72px; 
-margin: 0 0 24px; 
-text-transform: uppercase;
-`
-const H5 = styled.h5`
-background: -webkit-linear-gradient(#cb218e, #333);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent; 
-font-family: 'Raleway',sans-serif; 
-font-size: 28px; 
-font-weight: 800; 
-margin-top: 0; 
-text-align: center; 
-text-transform: uppercase;
+@media (min-width:320px) and (max-width:480px){
+width: 50px;
+height: 20px;
+font-size : 8px;
+border-radius: 0px;
+margin:0;
+}
+@media (min-width:375px) and (max-width:823px){
+width: 80px;
+height: 30px;
+font-size : 12px;
+border-radius: 0px;
+margin:0;
+}
+@media (min-width:375px) and (max-width:823px){
+  width: 80px;
+  height: 30px;
+  font-size : 12px;
+  border-radius: 0px;
+  margin:0;
+  }
 `
 const SocialButton = styled.a`
-padding: 5px;
+padding: 8px;
 font-size: 20px;
-text-align: center;
 margin: 5px;
 width:16px;
 height:16px;
 text-decoration: none;
 border-radius: 20%;
 color:white;
+display: flex;
+align-items: center; 
+justify-content: center;
   ${props =>
     props.facebook &&
     css`
@@ -108,19 +185,26 @@ color:white;
         color: white;
       `};
 `
+const SpeakerButtonSmall = styled(FontAwesomeIcon)`
+@media (min-width:320px) and (max-width:480px){
+  display:flex;
+}
+@media (min-width:481px){
+  display:none;
+}
+`
 const Game = () => {
   const [playing ,toggle] = useAudio(backgroundMusic)
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [stepNumber, setStepNumber] = useState(0)
   const [xIsNext, setXIsNext] = useState(true)
-  const [jokerSound] = useSound(jokerLaugh)
   const winner = CalculateWinner(history[stepNumber])
   let status;
   if (winner && winner!='Draw'){
     status = winner + ' Wins'
   }
   else if(winner && winner==='Draw'){
-    status = 'It is ' + winner +" Batman Vs Joker"
+    status = 'It is ' + winner
   }
   else{
     status = "Next player: " + (xIsNext ? "Joker" : "Batman")
@@ -149,7 +233,7 @@ const Game = () => {
         return (
           <Ul>
             <li key={move}>
-              <Div><Button onClick={() => jumpTo(move)}>{destination}</Button></Div>
+              <Button onClick={() => jumpTo(move)}>{destination}</Button>
             </li>
           </Ul>
         )
@@ -169,42 +253,34 @@ const Game = () => {
   }
     return (
       <div >
-        <Container>
-          <Wrapper>
-            <SocialButton facebook href= 'https://www.facebook.com/sklaghari/' target='_blank' >
-              <FontAwesomeIcon icon={faFacebookF}/>
-            </SocialButton>
-            <SocialButton twitter href= 'https://twitter.com/sklaghari' target='_blank' >
-              <FontAwesomeIcon icon={faTwitter}/>
-            </SocialButton>
-            <SocialButton youtube href= 'https://youtu.be/9A7TMiqOc04' target='_blank' >
-              <FontAwesomeIcon icon={faYoutube}/>
-            </SocialButton>
-            <SocialButton  github href= 'https://github.com/sklaghari' target='_blank' >
-              <FontAwesomeIcon  icon={faGithub}/>
-            </SocialButton>
-          </Wrapper>
-          <H2>Arkham city</H2>
-        </Container>
-        <Div onClick={toggle}>
-            {playing ? <FontAwesomeIcon 
-              icon={faVolumeUp} size = '2x' 
-              color='#656e72'/> :
-              <FontAwesomeIcon icon={faVolumeMute} size = '2x' color='#656e72'/>
-            }
-        </Div>
-        <div>
-          <br/>
-        <H5>{status}</H5>
-          <Board
-            squares={history[stepNumber]}
-            onClick={i => handleClick(i)}
-          />
-        </div>
-        <div>
-          <Div>{renderMoves()}</Div>
+        <Wrapper>
+          <TopContainer>
+            <SocialMediaDiv>
+              <SocialButton facebook href= 'https://www.facebook.com/sklaghari/' target='_blank' >
+                <FontAwesomeIcon icon={faFacebook}/>
+              </SocialButton>
+              <SocialButton twitter href= 'https://twitter.com/sklaghari' target='_blank' >
+                <FontAwesomeIcon icon={faTwitter}/>
+              </SocialButton>
+              <SocialButton youtube href= 'https://youtu.be/9A7TMiqOc04' target='_blank' >
+                <FontAwesomeIcon icon={faYoutube}/>
+              </SocialButton>
+              <SocialButton  github href= 'https://github.com/sklaghari' target='_blank' >
+                <FontAwesomeIcon  icon={faGithub}/>
+              </SocialButton>
+            </SocialMediaDiv>
+            <H2>Arkham city</H2>
+            <SpeakerButtonDiv onClick={toggle}>
+              {playing ? <FontAwesomeIcon icon={faVolumeUp} size = '2x' color='white'/> :
+                <FontAwesomeIcon icon={faVolumeMute} size = '2x' color='white'/>
+              }
+            </SpeakerButtonDiv>
+          </TopContainer>
+          <MidContainer><H5>{status}</H5></MidContainer>
+          <BoardDiv><Board squares={history[stepNumber]} onClick={ i =>handleClick(i)}/></BoardDiv>
+          <BottomDiv>{renderMoves()}</BottomDiv>
           <div>{renderSound()}</div>
-        </div>
+        </Wrapper>
       </div>
     );
 }

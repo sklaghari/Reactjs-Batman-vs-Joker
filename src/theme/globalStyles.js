@@ -4,13 +4,13 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background: teal;
     font-family: Roboto;
     background-image: url(${backgroundImage});
     background-attachment:fixed;
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
+    height:auto;
     }
 `;
 export default GlobalStyle;
