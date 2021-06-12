@@ -34,7 +34,20 @@ align-items: center;
 justify-content: center;
 @media (min-width:320px) and (max-width:480px){
   grid-column-start:1;
-  grid-column-end:13;
+  grid-column-end:12;
+}
+`
+const SpeakerButtonDivSmall = styled.div`
+@media (min-width:480px){
+  display:none;
+}
+@media (min-width:320px) and (max-width:480px){
+grid-column-start:12;
+grid-column-end:13;
+margin:0;
+display: flex;
+align-items: center; 
+justify-content: center;
 }
 `
 const H2 = styled.h2`
@@ -70,6 +83,7 @@ justify-content: center;
   display:none;
 }
 `
+
 const MidContainer = styled.div`
 display: grid;
 grid-template-columns: repeat(12, 1fr);
@@ -269,6 +283,11 @@ const Game = () => {
                 <FontAwesomeIcon  icon={faGithub}/>
               </SocialButton>
             </SocialMediaDiv>
+            <SpeakerButtonDivSmall onClick={toggle}>
+              {playing ? <FontAwesomeIcon icon={faVolumeUp} size = '1x' color='white'/> :
+                <FontAwesomeIcon icon={faVolumeMute} size = '1x' color='white'/>
+              }
+            </SpeakerButtonDivSmall>
             <H2>Arkham city</H2>
             <SpeakerButtonDiv onClick={toggle}>
               {playing ? <FontAwesomeIcon icon={faVolumeUp} size = '2x' color='white'/> :
