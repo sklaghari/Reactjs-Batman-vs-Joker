@@ -1,4 +1,3 @@
-import useSound from 'use-sound';
 const CalculateWinner= (squares) => {
     const lines = [
       [0, 1, 2],

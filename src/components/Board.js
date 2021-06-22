@@ -2,8 +2,8 @@ import React from 'react'
 import Square from './Square'
 import styled from 'styled-components'
 const Grid = styled.div`
-grid-column-start:1;
-grid-column-end:13;
+  grid-column-start:1;
+  grid-column-end:13;
 	display: grid;
   height:350px;
   width:350px;
