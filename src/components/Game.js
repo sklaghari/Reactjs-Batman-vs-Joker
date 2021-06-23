@@ -10,7 +10,7 @@ import batmanVictory from '../../public/sounds/batman.wav'
 import backgroundMusic from '../../public/sounds/background.mp3'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
-import { faFacebook,faYoutube,faGithub,faTwitter } from '@fortawesome/free-brands-svg-icons' 
+import { faFacebook,faYoutube,faGithub,faTwitter,faInstagram } from '@fortawesome/free-brands-svg-icons' 
 import Audio from './Audio'
 
 const Wrapper = styled.div`
@@ -191,6 +191,13 @@ justify-content: center;
       background: #bb0000;
       color: white;
     `};
+  ${props=>
+    props.instagram && 
+      css`
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+      -webkit-text-fill-color: transparent;
+      color: white;
+    `}    
   ${props =>
       props.github &&
         css`
@@ -277,6 +284,9 @@ const Game = () => {
               </SocialButton>
               <SocialButton youtube href= 'https://youtu.be/9A7TMiqOc04' target='_blank' >
                 <FontAwesomeIcon icon={faYoutube}/>
+              </SocialButton>
+              <SocialButton instagram href='https://www.instagram.com/sklaghari/' target ='_blank'>
+                <FontAwesomeIcon icon={faInstagram}/>
               </SocialButton>
               <SocialButton  github href= 'https://github.com/sklaghari' target='_blank' >
                 <FontAwesomeIcon  icon={faGithub}/>
