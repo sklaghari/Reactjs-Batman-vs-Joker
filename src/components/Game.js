@@ -4,7 +4,7 @@ import Board from './Board';
 import joker from '../../public/images/joker.png'
 import batman from '../../public/images/Batman.png'
 import CalculateWinner from './helperFunction'
-import useAudio from '../newhooks/useAudio'
+import useAudio from '../newHooks/useAudio'
 import jokerLaugh from '../../public/sounds/joker.wav'
 import batmanVictory from '../../public/sounds/batman.wav'
 import backgroundMusic from '../../public/sounds/background.mp3'
