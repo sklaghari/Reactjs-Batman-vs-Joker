@@ -4,7 +4,7 @@ import Board from './Board';
 import joker from '../../public/images/joker.png'
 import batman from '../../public/images/Batman.png'
 import CalculateWinner from './helperFunction'
-import useAudio from '../newHooks/useAudio'
+import useAudio from '../newhooks/useAudio'
 import jokerLaugh from '../../public/sounds/joker.wav'
 import batmanVictory from '../../public/sounds/batman.wav'
 import backgroundMusic from '../../public/sounds/background.mp3'
@@ -282,7 +282,7 @@ const Game = () => {
               <SocialButton twitter href= 'https://twitter.com/sklaghari' target='_blank' >
                 <FontAwesomeIcon icon={faTwitter}/>
               </SocialButton>
-              <SocialButton youtube href= 'https://youtu.be/9A7TMiqOc04' target='_blank' >
+              <SocialButton youtube href= 'https://youtu.be/rEyEAwhdyxc' target='_blank' >
                 <FontAwesomeIcon icon={faYoutube}/>
               </SocialButton>
               <SocialButton instagram href='https://www.instagram.com/sklaghari/' target ='_blank'>
