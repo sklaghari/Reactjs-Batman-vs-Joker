@@ -1,3 +1,5 @@
+import joker from '../../public/images/joker.png'
+import batman from '../../public/images/Batman.png'
 const CalculateWinner= (squares) => {
     const lines = [
       [0, 1, 2],
@@ -12,10 +14,10 @@ const CalculateWinner= (squares) => {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        if (squares[a] ==='/static/media/joker.6f94deac.png'){
+        if (squares[a] ===joker){
           return 'Joker';
         }
-        else if(squares[a] === '/static/media/Batman.efc2222d.png'){
+        else if(squares[a] === batman){
           return 'Batman';
         }
       }
